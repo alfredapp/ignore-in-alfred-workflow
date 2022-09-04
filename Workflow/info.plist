@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>com.vitorgalvao.alfred.ignoreinalfred</string>
+	<string>com.alfredapp.ignoreinalfred</string>
 	<key>connections</key>
 	<dict>
 		<key>01A3261D-C771-4A82-A089-B1FC98B0758D</key>
@@ -184,84 +184,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>anchorfields</key>
-				<true/>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>daterange</key>
-				<integer>0</integer>
-				<key>fields</key>
-				<array>
-					<dict>
-						<key>field</key>
-						<string>kMDItemDisplayName</string>
-						<key>not</key>
-						<false/>
-						<key>split</key>
-						<true/>
-						<key>value</key>
-						<string>{query}</string>
-						<key>words</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>field</key>
-						<string>kMDItemAlternateNames</string>
-						<key>not</key>
-						<false/>
-						<key>split</key>
-						<true/>
-						<key>value</key>
-						<string>{query}</string>
-						<key>words</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>field</key>
-						<string>kMDItemFinderComment</string>
-						<key>not</key>
-						<false/>
-						<key>split</key>
-						<true/>
-						<key>value</key>
-						<string>{query}</string>
-						<key>words</key>
-						<true/>
-					</dict>
-				</array>
-				<key>includesystem</key>
-				<false/>
-				<key>keyword</key>
-				<string>ignore</string>
-				<key>limit</key>
-				<integer>0</integer>
-				<key>runningsubtext</key>
-				<string></string>
-				<key>scopes</key>
-				<array/>
-				<key>sortmode</key>
-				<integer>0</integer>
-				<key>subtext</key>
-				<string>Exclude files and folders from Alfred’s search results</string>
-				<key>title</key>
-				<string>Ignore in Alfred</string>
-				<key>types</key>
-				<array/>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.filefilter</string>
-			<key>uid</key>
-			<string>616BBB32-A543-446F-825C-BE66B7C4C670</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -357,6 +279,84 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>anchorfields</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>daterange</key>
+				<integer>0</integer>
+				<key>fields</key>
+				<array>
+					<dict>
+						<key>field</key>
+						<string>kMDItemDisplayName</string>
+						<key>not</key>
+						<false/>
+						<key>split</key>
+						<true/>
+						<key>value</key>
+						<string>{query}</string>
+						<key>words</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>field</key>
+						<string>kMDItemAlternateNames</string>
+						<key>not</key>
+						<false/>
+						<key>split</key>
+						<true/>
+						<key>value</key>
+						<string>{query}</string>
+						<key>words</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>field</key>
+						<string>kMDItemFinderComment</string>
+						<key>not</key>
+						<false/>
+						<key>split</key>
+						<true/>
+						<key>value</key>
+						<string>{query}</string>
+						<key>words</key>
+						<true/>
+					</dict>
+				</array>
+				<key>includesystem</key>
+				<false/>
+				<key>keyword</key>
+				<string>ignore</string>
+				<key>limit</key>
+				<integer>0</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>scopes</key>
+				<array/>
+				<key>sortmode</key>
+				<integer>0</integer>
+				<key>subtext</key>
+				<string>Exclude files and folders from Alfred’s search results</string>
+				<key>title</key>
+				<string>Ignore in Alfred</string>
+				<key>types</key>
+				<array/>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.filefilter</string>
+			<key>uid</key>
+			<string>616BBB32-A543-446F-825C-BE66B7C4C670</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -412,12 +412,12 @@ fi</string>
 					<string>alfred:ignore</string>
 				</dict>
 				<key>taskuid</key>
-				<string>com.alfredapp.automation.core/files-and-folders/path.tags.add</string>
+				<string>com.alfredapp.automation.core/files-and-folders/path.tags.remove</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.automation.task</string>
 			<key>uid</key>
-			<string>79918A3B-4370-421B-AEBE-D994CA7C686A</string>
+			<string>6FAF27A2-B067-4CBE-97BB-FAD2D8B73F7C</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -430,12 +430,12 @@ fi</string>
 					<string>alfred:ignore</string>
 				</dict>
 				<key>taskuid</key>
-				<string>com.alfredapp.automation.core/files-and-folders/path.tags.remove</string>
+				<string>com.alfredapp.automation.core/files-and-folders/path.tags.add</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.automation.task</string>
 			<key>uid</key>
-			<string>6FAF27A2-B067-4CBE-97BB-FAD2D8B73F7C</string>
+			<string>79918A3B-4370-421B-AEBE-D994CA7C686A</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -559,10 +559,10 @@ fi</string>
 
 In addition to Universal Actions, there are Filters to `ignore`, `unignore`, and `reignore`.
 
-![](images/about/universal_actions.png)
-![](images/about/ignore.png)
-![](images/about/unignore.png)
-![](images/about/reignore.png)</string>
+![Universal Actions for ignore and unignore](images/about/universal_actions.png)
+![Alfred search for ignore](images/about/ignore.png)
+![Alfred search for unignore](images/about/unignore.png)
+![Alfred search for reignore](images/about/reignore.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>01A3261D-C771-4A82-A089-B1FC98B0758D</key>
