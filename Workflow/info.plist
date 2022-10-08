@@ -329,7 +329,7 @@ fi</string>
 				<key>includesystem</key>
 				<false/>
 				<key>keyword</key>
-				<string>ignore</string>
+				<string>{var:ignore_keyword}</string>
 				<key>limit</key>
 				<integer>0</integer>
 				<key>runningsubtext</key>
@@ -370,7 +370,7 @@ fi</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
-				<string>unignore</string>
+				<string>{var:unignore_keyword}</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -455,7 +455,7 @@ fi</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
-				<string>reignore</string>
+				<string>{var:reignore_keyword}</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -504,7 +504,7 @@ fi</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
-				<string>unignore folder</string>
+				<string>{var:unignore_keyword} folder</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -555,11 +555,14 @@ fi</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>The macOS metadata search API only allows including search folders, not excluding them. But by tagging files as `alfred:ignore`, Alfred can ignore those results. This workflow makes that tagging easier, adding or removing it from entire folder trees.
+	<string>## Usage
 
-In addition to Universal Actions, there are Filters to `ignore`, `unignore`, and `reignore`.
+Use the [Universal Actions](https://www.alfredapp.com/help/features/universal-actions/) to remove or readd files and folders from Alfred’s search results.
 
 ![Universal Actions for ignore and unignore](images/about/universal_actions.png)
+
+Alteratively, run the Keywords (defaults: `ignore`, `unignore`, and `reignore`) and type to filter.
+
 ![Alfred search for ignore](images/about/ignore.png)
 ![Alfred search for unignore](images/about/unignore.png)
 ![Alfred search for reignore](images/about/reignore.png)</string>
@@ -648,9 +651,73 @@ In addition to Universal Actions, there are Filters to `ignore`, `unignore`, and
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
-	<array/>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>ignore</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>Ignore Keyword</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>ignore_keyword</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>unignore</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>Unignore Keyword</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>unignore_keyword</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>reignore</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>Reignore Keyword</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>reignore_keyword</string>
+		</dict>
+	</array>
 	<key>version</key>
-	<string>2022.1</string>
+	<string>2022.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/ignore-in-alfred-workflow/</string>
 </dict>

@@ -6,13 +6,16 @@ Exclude files and folders from Alfred’s search results
 
 ## About
 
-The macOS metadata search API only allows including search folders, not excluding them. But by tagging files as `alfred:ignore`, Alfred can ignore those results. This workflow makes that tagging easier, adding or removing it from entire folder trees.
+## Usage
 
-In addition to Universal Actions, there are Filters to `ignore`, `unignore`, and `reignore`.
+Use the [Universal Actions](https://www.alfredapp.com/help/features/universal-actions/) to remove or readd files and folders from Alfred’s search results.
 
-![](Workflow/images/about/universal_actions.png)
-![](Workflow/images/about/ignore.png)
-![](Workflow/images/about/unignore.png)
-![](Workflow/images/about/reignore.png)
+![Universal Actions for ignore and unignore](Workflow/images/about/universal_actions.png)
+
+Alteratively, run the Keywords (defaults: `ignore`, `unignore`, and `reignore`) and type to filter.
+
+![Alfred search for ignore](Workflow/images/about/ignore.png)
+![Alfred search for unignore](Workflow/images/about/unignore.png)
+![Alfred search for reignore](Workflow/images/about/reignore.png)
 
 <a href='https://github.com/alfredapp/ignore-in-alfred-workflow/releases/latest/download/Ignore.in.Alfred.alfredworkflow'>⤓ Download Workflow</a>
