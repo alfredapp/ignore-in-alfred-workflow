@@ -2,15 +2,15 @@
 
 Exclude files and folders from Alfred’s search results
 
-<a href='https://github.com/alfredapp/ignore-in-alfred-workflow/releases/latest/download/Ignore.in.Alfred.alfredworkflow'>⤓ Download Workflow</a>
+<a href='https://alfred.app/workflows/alfredapp/ignore-in-alfred'>⤓ Install on the Alfred Gallery</a>
 
 ## Usage
 
-Use the [Universal Actions](https://www.alfredapp.com/help/features/universal-actions/) to remove or readd files and folders from Alfred’s search results.
+Remove or readd files and folders from Alfred’s search results via the [Universal Actions](https://www.alfredapp.com/help/features/universal-actions/).
 
 ![Universal Actions for ignore and unignore](Workflow/images/about/universal_actions.png)
 
-Alteratively, run the Keywords (defaults: `ignore`, `unignore`, and `reignore`) and type to filter.
+Alteratively, search for files and folders via the keywords (defaults: `ignore`, `unignore`, and `reignore`).
 
 ![Alfred search for ignore](Workflow/images/about/ignore.png)
 ![Alfred search for unignore](Workflow/images/about/unignore.png)

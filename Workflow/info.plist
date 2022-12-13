@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>com.alfredapp.ignoreinalfred</string>
+	<string>com.alfredapp.vitor.ignoreinalfred</string>
 	<key>connections</key>
 	<dict>
 		<key>01A3261D-C771-4A82-A089-B1FC98B0758D</key>
@@ -11,32 +11,6 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>79918A3B-4370-421B-AEBE-D994CA7C686A</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>1C053A25-0E5B-4711-A651-977D3AAE73AF</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>4E46CC46-B70F-41A5-AFDC-3437973CC6E7</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>2EB03D88-1A75-45AF-A60A-4F0F71D9A558</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>1C053A25-0E5B-4711-A651-977D3AAE73AF</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -72,31 +46,9 @@
 			</dict>
 		</array>
 		<key>6FAF27A2-B067-4CBE-97BB-FAD2D8B73F7C</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>4E46CC46-B70F-41A5-AFDC-3437973CC6E7</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
+		<array/>
 		<key>79918A3B-4370-421B-AEBE-D994CA7C686A</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>2EB03D88-1A75-45AF-A60A-4F0F71D9A558</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
+		<array/>
 		<key>A881CF95-47CE-45F2-8FEE-8CD9C78E175E</key>
 		<array>
 			<dict>
@@ -180,101 +132,6 @@
 			<string>C58A1DF6-391A-4330-999A-1A3D7ACDB592</string>
 			<key>version</key>
 			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string># Special values for OneUpdater reuse
-readonly workflow_webaddress="$(/usr/libexec/PlistBuddy -c 'print webaddress' './info.plist')"
-readonly workflow_repo="$(basename "$(dirname "${workflow_webaddress}")")/$(basename "${workflow_webaddress}")"
-
-# THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
-readonly remote_info_plist="${workflow_webaddress}/raw/main/Workflow/info.plist"
-readonly workflow_url="${workflow_repo}"
-readonly download_type='github_release'
-readonly frequency_check='4'
-
-# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED!
-function abort {
-  echo "${1}" &gt;&amp;2
-  exit 1
-}
-
-function url_exists {
-  curl --silent --location --output /dev/null --fail --range 0-0 "${1}"
-}
-
-function notification {
-  local -r notificator="$(find . -type d -name 'Notificator.app')"
-  if [[ -n "${notificator}" ]]; then
-    "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
-    return
-  fi
-
-  local -r terminal_notifier="$(find . -type f -name 'terminal-notifier')"
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-    return
-  fi
-
-  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
-}
-
-# Local sanity checks
-readonly local_info_plist='info.plist'
-readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
-
-[[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
-[[ "${download_type}" =~ ^(direct|page|github_release)$ ]] || abort "'download_type' (${download_type}) needs to be one of 'direct', 'page', or 'github_release'."
-[[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
-
-# Check for updates
-if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
-  if ! url_exists "${remote_info_plist}"; then abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."; fi # Remote sanity check
-
-  readonly tmp_file="$(mktemp)"
-  curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
-  readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
-
-  if [[ "${local_version}" == "${remote_version}" ]]; then
-    touch "${local_info_plist}" # Reset timer by touching local file
-    exit 0
-  fi
-
-  if [[ "${download_type}" == 'page' ]]; then
-    notification 'Opening download page…'
-    open "${workflow_url}"
-    exit 0
-  fi
-
-  download_url="$([[ "${download_type}" == 'github_release' ]] &amp;&amp; curl --silent "https://api.github.com/repos/${workflow_url}/releases/latest" | grep 'browser_download_url' | head -1 | sed -E 's/.*browser_download_url": "(.*)"/\1/' || echo "${workflow_url}")"
-
-  if url_exists "${download_url}"; then
-    notification 'Downloading and installing…'
-    curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${download_url}"
-    open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
-  else
-    abort "'workflow_url' (${download_url}) appears to not be reachable."
-  fi
-fi</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>4E46CC46-B70F-41A5-AFDC-3437973CC6E7</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -537,31 +394,15 @@ fi</string>
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
-		<dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.junction</string>
-			<key>uid</key>
-			<string>2EB03D88-1A75-45AF-A60A-4F0F71D9A558</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.junction</string>
-			<key>uid</key>
-			<string>1C053A25-0E5B-4711-A651-977D3AAE73AF</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string>## Usage
 
-Use the [Universal Actions](https://www.alfredapp.com/help/features/universal-actions/) to remove or readd files and folders from Alfred’s search results.
+Remove or readd files and folders from Alfred’s search results via the [Universal Actions](https://www.alfredapp.com/help/features/universal-actions/).
 
 ![Universal Actions for ignore and unignore](images/about/universal_actions.png)
 
-Alteratively, run the Keywords (defaults: `ignore`, `unignore`, and `reignore`) and type to filter.
+Alteratively, search for files and folders via the keywords (defaults: `ignore`, `unignore`, and `reignore`).
 
 ![Alfred search for ignore](images/about/ignore.png)
 ![Alfred search for unignore](images/about/unignore.png)
@@ -574,31 +415,6 @@ Alteratively, run the Keywords (defaults: `ignore`, `unignore`, and `reignore`) 
 			<real>55</real>
 			<key>ypos</key>
 			<real>315</real>
-		</dict>
-		<key>1C053A25-0E5B-4711-A651-977D3AAE73AF</key>
-		<dict>
-			<key>xpos</key>
-			<real>835</real>
-			<key>ypos</key>
-			<real>480</real>
-		</dict>
-		<key>2EB03D88-1A75-45AF-A60A-4F0F71D9A558</key>
-		<dict>
-			<key>xpos</key>
-			<real>505</real>
-			<key>ypos</key>
-			<real>480</real>
-		</dict>
-		<key>4E46CC46-B70F-41A5-AFDC-3437973CC6E7</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<real>940</real>
-			<key>ypos</key>
-			<real>180</real>
 		</dict>
 		<key>5FD9C490-D374-44DE-988F-B284ABE5557B</key>
 		<dict>
@@ -717,7 +533,7 @@ Alteratively, run the Keywords (defaults: `ignore`, `unignore`, and `reignore`) 
 		</dict>
 	</array>
 	<key>version</key>
-	<string>2022.2</string>
+	<string>2022.3</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/ignore-in-alfred-workflow/</string>
 </dict>
