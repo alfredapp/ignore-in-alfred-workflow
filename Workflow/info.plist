@@ -402,7 +402,7 @@ Remove or readd files and folders from Alfred’s search results via the [Univer
 
 ![Universal Actions for ignore and unignore](images/about/universal_actions.png)
 
-Alteratively, search for files and folders via the keywords (defaults: `ignore`, `unignore`, and `reignore`).
+Alternatively, search for files and folders via the `ignore`, `unignore`, and `reignore` keywords.
 
 ![Alfred search for ignore](images/about/ignore.png)
 ![Alfred search for unignore](images/about/unignore.png)
