@@ -22,23 +22,36 @@ if resultCount == 0 {
 }
 
 // Prepare items
-let sfItems: [[String: Any]] = (0..<resultCount).compactMap { resultIndex in
+struct ScriptFilterItem: Codable {
+  static let type: String = "file"
+
+  let uid: String
+  let title: String
+  let subtitle: String
+  let icon: FileIcon
+  let arg: String
+
+  struct FileIcon: Codable {
+    let path: String
+    static let fileicon: String = "fileicon"
+  }
+}
+
+let sfItems: [ScriptFilterItem] = (0..<resultCount).compactMap { resultIndex in
   let rawPointer = MDQueryGetResultAtIndex(searchQuery, resultIndex)
   let resultItem = Unmanaged<MDItem>.fromOpaque(rawPointer!).takeUnretainedValue()
 
   guard let resultPath = MDItemCopyAttribute(resultItem, kMDItemPath) as? String else { return nil }
 
-  return [
-    "uid": resultPath,
-    "type": "file",
-    "title": URL(fileURLWithPath: resultPath).lastPathComponent,
-    "subtitle": (resultPath as NSString).abbreviatingWithTildeInPath,
-    "icon": ["path": resultPath, "type": "fileicon"],
-    "arg": resultPath,
-  ]
+  return ScriptFilterItem(
+    uid: resultPath,
+    title: URL(fileURLWithPath: resultPath).lastPathComponent,
+    subtitle: (resultPath as NSString).abbreviatingWithTildeInPath,
+    icon: ScriptFilterItem.FileIcon(path: resultPath),
+    arg: resultPath
+  )
 }
 
 // Output JSON
-let jsonData: Data = try JSONSerialization.data(withJSONObject: ["items": sfItems])
-let jsonString: String = String(data: jsonData, encoding: .utf8)!
-print(jsonString)
+let jsonData = try JSONEncoder().encode(["items": sfItems])
+print(String(data: jsonData, encoding: .utf8)!)
