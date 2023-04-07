@@ -9,7 +9,7 @@ MDQueryExecute(searchQuery, CFOptionFlags(kMDQuerySynchronous.rawValue))
 let resultCount = MDQueryGetResultCount(searchQuery)
 
 // No results
-if resultCount == 0 {
+guard resultCount > 0 else {
   print(
     """
     {\"items\":[{\"title\":\"No Results\",
