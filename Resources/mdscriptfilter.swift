@@ -23,17 +23,16 @@ guard resultCount > 0 else {
 
 // Prepare items
 struct ScriptFilterItem: Codable {
-  static let type: String = "file"
-
   let uid: String
   let title: String
   let subtitle: String
+  let type: String
   let icon: FileIcon
   let arg: String
 
   struct FileIcon: Codable {
     let path: String
-    static let fileicon: String = "fileicon"
+    let type: String
   }
 }
 
@@ -47,7 +46,8 @@ let sfItems: [ScriptFilterItem] = (0..<resultCount).compactMap { resultIndex in
     uid: resultPath,
     title: URL(fileURLWithPath: resultPath).lastPathComponent,
     subtitle: (resultPath as NSString).abbreviatingWithTildeInPath,
-    icon: ScriptFilterItem.FileIcon(path: resultPath),
+    type: "file",
+    icon: ScriptFilterItem.FileIcon(path: resultPath, type: "fileicon"),
     arg: resultPath
   )
 }
