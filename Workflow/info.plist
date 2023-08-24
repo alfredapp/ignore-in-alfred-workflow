@@ -249,7 +249,7 @@
 				<key>title</key>
 				<string>Stop Ignoring in Alfred</string>
 				<key>type</key>
-				<integer>5</integer>
+				<integer>11</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -334,7 +334,7 @@
 				<key>title</key>
 				<string>Reignore in Alfred</string>
 				<key>type</key>
-				<integer>5</integer>
+				<integer>11</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -383,7 +383,7 @@
 				<key>title</key>
 				<string>Stop Ignoring Folders in Alfred</string>
 				<key>type</key>
-				<integer>5</integer>
+				<integer>11</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
