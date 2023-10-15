@@ -18,7 +18,7 @@ guard resultCount > 0 else {
     """
   )
 
-  exit(0)
+  exit(EXIT_SUCCESS)
 }
 
 // Prepare items

@@ -239,7 +239,7 @@
 				<key>runningsubtext</key>
 				<string>Querying ignored paths…</string>
 				<key>script</key>
-				<string>./mdscriptfilter "kMDItemUserTags == alfred:ignore"</string>
+				<string>./mdignored "kMDItemUserTags == alfred:ignore"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -373,7 +373,7 @@
 				<key>runningsubtext</key>
 				<string>Querying ignored folders…</string>
 				<key>script</key>
-				<string>./mdscriptfilter "kMDItemUserTags == alfred:ignore &amp;&amp; kMDItemContentType == public.folder"</string>
+				<string>./mdignored "kMDItemUserTags == alfred:ignore &amp;&amp; kMDItemContentType == public.folder"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
