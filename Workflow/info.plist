@@ -244,6 +244,8 @@
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
+				<key>skipuniversalaction</key>
+				<true/>
 				<key>subtext</key>
 				<string>Readd files and folders to Alfred’s search results</string>
 				<key>title</key>
@@ -329,6 +331,8 @@
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
+				<key>skipuniversalaction</key>
+				<true/>
 				<key>subtext</key>
 				<string>Exclude new folder contents from Alfred’s search results</string>
 				<key>title</key>
@@ -378,6 +382,8 @@
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
+				<key>skipuniversalaction</key>
+				<true/>
 				<key>subtext</key>
 				<string>Readd folders to Alfred’s search results</string>
 				<key>title</key>
